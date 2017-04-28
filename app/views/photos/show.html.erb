@@ -1,0 +1,10 @@
+<h1>MyPhotos</h1>
+	
+     <td><%= image_tag(@photo.image.url, width: 100, height: 100)%>
+     </td>
+     <%= @photo.tags.map(&:title).join(",")%>
+
+     <%= link_to 'Edit', edit_album_photo_path(@album, @photo)%>
+
+    <%= link_to 'Delete', album_photo_path(@album, @photo), method: :delete%>
+	

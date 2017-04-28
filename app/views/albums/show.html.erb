@@ -1,0 +1,32 @@
+<h1>Show album details</h1>
+<table>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Image</th>
+	<tr>
+      <td><%= @album.title %></td>
+      <td><%= @album.description %></td>
+      <% @album.photos.each do |photo|%>
+        <% if photo.id.present? %>
+          <td><%= photo.image_file_name %>
+            <%=link_to 'Show',album_photo_path(album_id: @album.id, id: photo.id)%>
+            <%#= link_to 'Delete', album_photo_path(album_id: @album.id, id: photo.id), method: :delete%>
+          </td>
+        <%end%>
+      <%end%>
+    </tr>
+  </table>
+<%= form_for @photo, url: album_photos_path(@album), :method => :post do|f| %>
+
+<p> 
+
+    <%= f.label :image %><br>
+    <%= f.file_field :image %><br>
+    <%= f.label :tag %><br>
+    <%= text_field_tag :tags %>
+    <%= f.hidden_field :album_id %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
