@@ -7,6 +7,11 @@ class PhotosController < ApplicationController
   	@photo = Photo.new
   end
 
+  def serch_by_tag
+    
+    @photos = Photo.joins(:tags).where("tags.title like ? ", "%#{params[:tag]}%" )
+  end
+
   def create
   	@photo = @album.photos.new(photos_params)
     if @photo.save

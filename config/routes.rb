@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
    root 'welcome#index'
    resources :albums do
-   	resources :photos
+   	resources :photos do
+   		collection do
+   			get :serch_by_tag
+   		end
+   	end
    end
   
 

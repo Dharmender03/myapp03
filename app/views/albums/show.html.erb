@@ -14,6 +14,10 @@
           </td>
         <%end%>
       <%end%>
+      <%= form_tag serch_by_tag_album_photos_path(album_id: @album), method: :get do %>
+        <%= text_field_tag :tag, '', placeholder: "enter tag here"%>
+        <%= submit_tag 'submit'%>
+      <% end %>
     </tr>
   </table>
 <%= form_for @photo, url: album_photos_path(@album), :method => :post do|f| %>
